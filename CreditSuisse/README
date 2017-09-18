@@ -1,0 +1,78 @@
+Java Supported Version: Java 1.7 & Java 1.8
+
+How to run this program:
+1. Execute following command to run this program:
+         java -cp bin/ com.cs.app.Entrypoint
+   Note: This program has been tested on Mac.     
+
+2. Add on feature:
+   E -> This command will be used to erase the canvas.
+
+3. Add new Element:
+   To add new element like square, We need to create a Square class which implements Item
+   interface. We will require to override populateCanvas method. 
+   Then we will need to add case statement for Square class in ItemFactory which will return
+   new Square object. 
+   Add entry in Menu class file.
+
+Assumptions:
+1. If Canvas have a Rectange and if we are creating another rectangle which is overlapping older one,
+Then it will hide area of older rectangle which is overriden.
+Like this:
+
+R 1 1 30 8
+------------------------------------------
+|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX          |
+|X                            X          |
+|X                            X          |
+|X                            X          |
+|X                            X          |
+|X                            X          |
+|X                            X          |
+|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX          |
+------------------------------------------
+
+R 20 1 40 8
+------------------------------------------
+|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|
+|X                  X                   X|
+|X                  X                   X|
+|X                  X                   X|
+|X                  X                   X|
+|X                  X                   X|
+|X                  X                   X|
+|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|
+------------------------------------------
+
+2. During Color fill, If canvas already have another color filled in some of portion,
+That will be updated with new color.
+B 20 8 %
+------------------------------------------
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+------------------------------------------
+
+B 40 5 ~
+------------------------------------------
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+|%%%%%%%%%%%%%%%%%%%%                    |
+------------------------------------------
+ But it will not override Rectangle or Line.
+
+3. If We have canvas created and again user create canvas, it will ask for user confirmation.
+If user enters Y, it will delete prev canvas and will create new canvas.
+4. Canvas have few reserved Colors, which can not be used during B command.
+   They are following - ('-','|','X','.')
+   If user use any of these color, it will throw warning.
